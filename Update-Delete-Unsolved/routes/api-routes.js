@@ -52,7 +52,8 @@ module.exports = function(app) {
   app.put("/api/todos", function(req, res) {
     db.Todo.update(
       {
-        text: req.body.text
+        text: req.body.text,
+        complete: req.body.complete
       },
       {
         where: {
