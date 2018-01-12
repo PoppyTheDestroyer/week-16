@@ -1,3 +1,4 @@
+`use strict`;
 module.exports = function(sequelize, DataTypes) {
   var Post = sequelize.define("Post", {
     title: {
@@ -14,6 +15,14 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  Post.associate = models => {
+    models.Post.belongsTo(models.Author, {
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
   // Add a belongsTo association to Authors here
   // Example: https://github.com/sequelize/express-example/blob/master/models/task.js
   return Post;
